@@ -13,7 +13,7 @@
 int main()
 {
 	int serverSocket, clientSocket; //File descriptors
-	
+		
 	socklen_t addresslength = 0; //Needed for accept()
 
 	struct sockaddr_in srv, cli;
@@ -61,8 +61,11 @@ int main()
 	}
 	
 	printf("Client connected\n");
-	read(clientSocket, buf, 511);
 	
+	int n;
+	n = read(clientSocket, buf, 511);
+	write(1, buf, n);
+
 	data = "Success\n";
 	write(clientSocket, data, strlen(data));
 	close(clientSocket);
